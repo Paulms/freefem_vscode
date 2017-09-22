@@ -1,0 +1,26 @@
+{
+    "name": "FreeFem",
+    "displayName": "FreeFem++",
+    "description": "FreeFem syntax highlight",
+    "version": "0.0.1",
+    "publisher": "Paulms",
+    "engines": {
+        "vscode": "^1.16.0"
+    },
+    "categories": [
+        "Languages"
+    ],
+    "contributes": {
+        "languages": [{
+            "id": "FreeFem++",
+            "aliases": ["FreeFem++", "FreeFem++"],
+            "extensions": [".edp"],
+            "configuration": "./language-configuration.json"
+        }],
+        "grammars": [{
+            "language": "FreeFem++",
+            "scopeName": "source.FreeFem++",
+            "path": "./syntaxes/FreeFem++.tmLanguage"
+        }]
+    }
+}
