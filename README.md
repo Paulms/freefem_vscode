@@ -8,7 +8,7 @@ Adds highlighting support for FreeFem++ (.edp). This is based on the syntax file
 
 ## Requirements
 
-
+To use this extension in your stable VS Code installation, copy the complete output folder to a new folder under [your `.vscode/extensions` folder](https://code.visualstudio.com/docs/extensions/yocode#_your-extensions-folder) and restart VS Code.
 
 ## Extension Settings
 
