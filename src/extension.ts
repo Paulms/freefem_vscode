@@ -4,6 +4,7 @@
 import * as vscode from 'vscode';
 import * as settings from './settings';
 import * as execpath from './execpath';
+import * as runfile from './runfile';
 
 let g_settings: settings.ISettings = null;
 let g_context: vscode.ExtensionContext = null;
@@ -18,11 +19,9 @@ export async function activate(context: vscode.ExtensionContext) {
     // Config change
     context.subscriptions.push(vscode.workspace.onDidChangeConfiguration(configChanged));
 
-    // Language settings
-    vscode.languages.setLanguageConfiguration('FreeFem++');
-
     // Active features from other files
     execpath.activate(context, g_settings);
+    runfile.activate(context, g_settings);
 }
 
 // this method is called when your extension is deactivated

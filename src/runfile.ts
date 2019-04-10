@@ -18,20 +18,25 @@ async function executeFile() {
   }
   let fname = editor.document.fileName;
   let isfile = await fs.exists(fname)
-  if (isfile && !(editor.document.isDirty)) {
-    executeCode('include(raw"' + fname + '")')
-  }
-
   if (g_terminal == null) {
-    startREPLConn()
-    let exepath = await execpath.getFreeFemExePath();
     g_terminal = vscode.window.createTerminal(
         {
-            name: "FreeFem++", 
-            shellArgs: ['-cd', fname],
-            env: {
-                FREEFEM_EDITOR: `"${fname}"`
-            }});
+            name: "FreeFem++"});
     }
-g_terminal.show(true);
+  let exepath = await execpath.getFreeFemExePath();
+  g_terminal.show(true);
+  g_terminal.sendText(exepath+"-cd "+fname);
+}
+
+export function activate(context: vscode.ExtensionContext, settings: settings.ISettings) {
+  g_context = context;
+  g_settings = settings;
+
+  context.subscriptions.push(vscode.commands.registerCommand('languaje-freefem.executeFile', executeFile));
+
+    vscode.window.onDidCloseTerminal(terminal => {
+      if (terminal == g_terminal) {
+          g_terminal = null;
+      }
+  })
 }

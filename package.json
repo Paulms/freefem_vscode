@@ -1,5 +1,5 @@
 {
-    "name": "FreeFem",
+    "name": "languaje-freefem",
     "displayName": "FreeFem++",
     "description": "FreeFem syntax highlight",
     "version": "0.1.0",
@@ -16,26 +16,36 @@
     ],
     "main": "./out/extension",
     "contributes": {
-        "languages": [{
-            "id": "FreeFem++",
-            "aliases": ["FreeFem++", "FreeFem++"],
-            "extensions": [".edp",".idp"],
-            "configuration": "./language-configuration.json"
-        }],
-        "grammars": [{
-            "language": "FreeFem++",
-            "scopeName": "source.FreeFem++",
-            "path": "./syntaxes/FreeFem++.tmGrammar.json"
-        }],
+        "languages": [
+            {
+                "id": "FreeFem++",
+                "aliases": [
+                    "FreeFem++",
+                    "FreeFem++"
+                ],
+                "extensions": [
+                    ".edp",
+                    ".idp"
+                ],
+                "configuration": "./language-configuration.json"
+            }
+        ],
+        "grammars": [
+            {
+                "language": "FreeFem++",
+                "scopeName": "source.FreeFem++",
+                "path": "./syntaxes/FreeFem++.tmGrammar.json"
+            }
+        ],
         "commands": [
             {
-                "command": "FreeFem.executeFile",
+                "command": "languaje-freefem.executeFile",
                 "title": "FreeFem++: Execute File"
             }
         ],
         "keybindings": [
             {
-                "command": "FreeFem.executeFile",
+                "command": "languaje-freefem.executeFile",
                 "key": "F5",
                 "when": "editorTextFocus && editorLangId == FreeFem++"
             }
