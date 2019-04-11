@@ -1,6 +1,5 @@
 import * as vscode from 'vscode';
 import * as settings from './settings';
-import * as vslc from 'vscode-languageclient';
 import * as os from 'os';
 import * as path from 'path';
 import * as process from 'process';
@@ -20,27 +19,39 @@ export async function getFreeFemExePath() {
             let homedir = os.homedir();
             let pathsToSearch = [];
             if (process.platform == "win32") {
-                pathsToSearch = ["FreeFem++.exe"         
+                pathsToSearch = ["FreeFem++.exe",
+                path.join("C:", "Programs Files", "FreeFem++", "FreeFem++.exe")      
                 ];
             }
             else if (process.platform == "darwin") {
-                pathsToSearch = ["FreeFem++"];
+                pathsToSearch = ["FreeFem++",
+                path.join("/", "usr", "local", "bin", "FreeFem++"),
+                path.join("/", "usr", "local", "share", "frefem++", "FreeFem++"),
+                path.join("/", "usr", "local", "lib", "f++", "FreeFem++")
+                ];
             }
             else {
-                pathsToSearch = ["FreeFem++"];
+                pathsToSearch = ["FreeFem++",
+                path.join("/", "usr", "local", "bin", "FreeFem++"),
+                path.join("/", "usr", "local", "share", "frefem++", "FreeFem++"),
+                path.join("/", "usr", "local", "lib", "f++", "FreeFem++")
+                ];
             }
             let foundFreeFem = false;
+            let testFile = path.join(g_context.extensionPath, 'scripts', 'dummy.edp');
             for (let p of pathsToSearch) {
                 try {
-                    var res = await exec(`"${p}"`);
+                    var res = await exec(p + " -v 0 " + testFile);
                     foundFreeFem = true;
+                    actualFreeFemExePath = p;
                     break;
                 }
                 catch (e) {
                 }
             }
             if (!foundFreeFem) {
-                actualFreeFemExePath = g_settings.FreeFemExePath;
+                actualFreeFemExePath = "FreeFem++"
+                vscode.window.showErrorMessage( 'Path to FreeFem++ executable has not been set.' )
             }
         }
         else {

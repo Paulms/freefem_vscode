@@ -1,7 +1,4 @@
 import * as vscode from 'vscode';
-import * as path from 'path';
-import * as os from 'os';
-import * as vslc from 'vscode-languageclient';
 import * as settings from './settings';
 import * as execpath from './execpath';
 import * as fs from 'async-file';
@@ -25,7 +22,7 @@ async function executeFile() {
     }
   let exepath = await execpath.getFreeFemExePath();
   g_terminal.show(true);
-  g_terminal.sendText(exepath+"-cd "+fname);
+  g_terminal.sendText(exepath + " -cd "+fname);
 }
 
 export function activate(context: vscode.ExtensionContext, settings: settings.ISettings) {
