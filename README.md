@@ -14,6 +14,8 @@ https://github.com/Skyline124/freefem-sublime-text-syntax
 
 To use this extension in your stable VS Code installation, copy the complete output folder to a new folder under [your `.vscode/extensions` folder](https://code.visualstudio.com/docs/extensions/yocode#_your-extensions-folder) and restart VS Code.
 
+A .vsix file can also be downloaded from the release section.
+
 ## Extension Settings
 
 * ​
